@@ -21,7 +21,7 @@
 
                             @foreach($awards as $award)
                                 <tr>
-                                    <td>{{$award->name}}</td>
+                                    <td><a href="{{action('AwardController@show', ['slug' => $award->slug])}}">{{$award->name}}</a></td>
                                     <td>{{$award->description}}</td>
                                     <td>{{$award->open}}</td>
                                     <td>{{$award->deadline}}</td>

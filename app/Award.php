@@ -4,11 +4,12 @@ namespace App;
 
 use Auth;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 
 class Award extends Model {
 
-	use Sluggable;
+	use Sluggable, SluggableScopeHelpers;
 
 	/**
 	 * The attributes that are mass assignable.

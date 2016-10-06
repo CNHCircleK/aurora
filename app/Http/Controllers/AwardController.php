@@ -47,9 +47,10 @@ class AwardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $award = Award::findBySlug($slug);
+	    return view('award/show', compact('award'));
     }
 
     /**
