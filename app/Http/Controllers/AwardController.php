@@ -25,7 +25,7 @@ class AwardController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		//
+		return view('award/create');
 	}
 
 	/**
@@ -36,7 +36,8 @@ class AwardController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store( Request $request ) {
-		//
+		$award = Award::create($request->all());
+		return redirect()->action('AwardController@show', $award->slug);
 	}
 
 	/**
