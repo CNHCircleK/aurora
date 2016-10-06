@@ -15,7 +15,8 @@ class Award extends Model {
 		'name',
 		'description',
 		'open',
-		'deadline'
+		'deadline',
+		'user_id'
 	];
 
 	protected static function boot() {
@@ -23,7 +24,9 @@ class Award extends Model {
 
 		static::creating(function ($model)
 		{
-			$model->user_id = Auth::id();
+			if (Auth::id()) {
+				$model->user_id = Auth::id();
+			}
 		});
 	}
 }
