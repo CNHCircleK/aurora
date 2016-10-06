@@ -7,83 +7,89 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class AwardController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-    	$awards = Award::all();
-        return view('award/index', compact('awards'));
-    }
+class AwardController extends Controller {
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index() {
+		$awards = Award::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+		return view( 'award/index', compact( 'awards' ) );
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function create() {
+		//
+	}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($slug)
-    {
-        $award = Award::findBySlug($slug);
-	    return view('award/show', compact('award'));
-    }
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request $request
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store( Request $request ) {
+		//
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param $slug
+	 *
+	 * @return \Illuminate\Http\Response
+	 * @internal param int $id
+	 */
+	public function show( $slug ) {
+		$award = Award::findBySlug( $slug );
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+		return view( 'award/show', compact( 'award' ) );
+	}
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param $slug
+	 *
+	 * @return \Illuminate\Http\Response
+	 * @internal param int $id
+	 */
+	public function edit( $slug ) {
+		$award = Award::findBySlug( $slug );
+
+		return view( 'award/edit', compact( 'award' ) );
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request $request
+	 * @param $slug
+	 *
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function update( Request $request, $slug ) {
+
+		$award = Award::findBySlug( $slug );
+		$award->update($request->all());
+		return redirect()->action('AwardController@show', $slug);
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int $id
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy( $id ) {
+		//
+	}
 }
