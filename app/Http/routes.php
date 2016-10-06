@@ -19,4 +19,6 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::resource('awards', 'AwardController');
+Route::group(['middleware' => 'auth'], function() {
+	Route::resource('awards', 'AwardController');
+});
