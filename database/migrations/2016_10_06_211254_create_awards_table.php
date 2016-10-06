@@ -15,6 +15,7 @@ class CreateAwardsTable extends Migration
         Schema::create('awards', function (Blueprint $table) {
             $table->increments('id');
 	        $table->string('name');
+	        $table->string('slug');
 	        $table->text('description');
 	        $table->dateTime('open');
 	        $table->dateTime('deadline');

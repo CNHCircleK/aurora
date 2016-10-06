@@ -3,9 +3,13 @@
 namespace App;
 
 use Auth;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 class Award extends Model {
+
+	use Sluggable;
+
 	/**
 	 * The attributes that are mass assignable.
 	 *
@@ -28,5 +32,19 @@ class Award extends Model {
 				$model->user_id = Auth::id();
 			}
 		});
+	}
+
+	/**
+	 * Return the sluggable configuration array for this model.
+	 *
+	 * @return array
+	 */
+	public function sluggable()
+	{
+		return [
+			'slug' => [
+				'source' => 'name'
+			]
+		];
 	}
 }
