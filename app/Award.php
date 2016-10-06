@@ -18,10 +18,12 @@ class Award extends Model {
 		'deadline'
 	];
 
-	public function __construct( array $attributes ) {
-		$this->setRawAttributes( [
-			'user_id' => Auth::id()
-		] );
-		parent::__construct( $attributes );
+	protected static function boot() {
+		parent::boot();
+
+		static::creating(function ($model)
+		{
+			$model->user_id = Auth::id();
+		});
 	}
 }
