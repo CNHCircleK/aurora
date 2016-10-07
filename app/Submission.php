@@ -28,4 +28,9 @@ class Submission extends Model
 			}
 		});
 	}
+
+	public function award()
+	{
+		return $this->belongsTo('App\Award');
+	}
 }

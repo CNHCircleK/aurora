@@ -48,4 +48,9 @@ class Award extends Model {
 			]
 		];
 	}
+
+	public function submissions()
+	{
+		return $this->hasMany('App\Submission');
+	}
 }
