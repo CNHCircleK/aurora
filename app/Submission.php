@@ -33,4 +33,9 @@ class Submission extends Model
 	{
 		return $this->belongsTo('App\Award');
 	}
+
+	public function user()
+	{
+		return $this->belongsTo('App\User');
+	}
 }

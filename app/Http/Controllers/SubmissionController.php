@@ -37,7 +37,7 @@ class SubmissionController extends Controller
      * @return \Illuminate\Http\Response
      */
 	public function store( Request $request ) {
-		$path = $request->file('file')->store('submissions');
+		$path = $request->file('file')->store('submissions', 'public');
 
 		Submission::create([
 			'file' => $path,

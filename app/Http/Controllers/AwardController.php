@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Award;
+use App\Submission;
+use Auth;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -50,8 +52,9 @@ class AwardController extends Controller {
 	 */
 	public function show( $slug ) {
 		$award = Award::findBySlug( $slug );
+		$submissions = Submission::where('user_id', Auth::id())->get();
 
-		return view( 'award/show', compact( 'award' ) );
+		return view( 'award/show', compact( 'award', 'submissions' ) );
 	}
 
 	/**

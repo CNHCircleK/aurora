@@ -17,12 +17,18 @@
                 </div>
 
                 <div class="panel panel-default">
-                    @if($award->submissions)
+                    @if(!$submissions->isEmpty())
                         <div class="panel-heading">
                             Submissions
                         </div>
                         <div class="panel-body">
-                            PDF will be shown here.
+                            @foreach($submissions as $submission)
+                            <object data="{{ Storage::url($submission->file) }}" type="application/pdf" width="100%" height="600px">
+                                <iframe src="{{ Storage::url($submission->file) }}" width="100%" height="500px" style="border: none;">
+                                    This browser does not support PDFs. Please download the PDF to view it: <a href="{{ Storage::url($submission->file) }}">Download PDF</a>
+                                </iframe>
+                            </object>
+                            @endforeach
                         </div>
                     @else
                         <div class="panel-heading">
