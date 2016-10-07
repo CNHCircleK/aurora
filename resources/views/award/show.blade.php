@@ -15,6 +15,20 @@
                         {{$award->description}}
                     </div>
                 </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Make a Submission
+                    </div>
+                    <div class="panel-body">
+                        {!! Form::open(['action' => 'SubmissionController@store', 'files' => true]) !!}
+                        {!! Form::file('file') !!}
+                        {!! Form::hidden('award_id', $award->id) !!}
+                        <br />
+                        {!! Form::submit('Submit', ['class' => 'btn btn-success']) !!}
+                        {!! Form::close() !!}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
