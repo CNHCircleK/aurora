@@ -50,7 +50,8 @@ class TeamController extends Controller
      */
     public function show($id)
     {
-        //
+    	$team = Team::find($id);
+        return view('team/show', compact('team'));
     }
 
     /**
