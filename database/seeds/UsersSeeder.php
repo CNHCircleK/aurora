@@ -16,6 +16,7 @@ class UsersSeeder extends Seeder
 		    'email' => 'test@example.com',
 		    'password' => bcrypt('test'),
 		    'remember_token' => str_random(10),
+		    'admin' => true
 	    ]);
     }
 }

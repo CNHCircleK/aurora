@@ -27,6 +27,7 @@ class AwardController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
+		$this->authorize('create', Award::class);
 		return view('award/create');
 	}
 
@@ -38,6 +39,7 @@ class AwardController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store( Request $request ) {
+		$this->authorize('create', Award::class);
 		$award = Award::create($request->all());
 		return redirect()->action('AwardController@show', $award->slug);
 	}
@@ -67,6 +69,7 @@ class AwardController extends Controller {
 	 */
 	public function edit( $slug ) {
 		$award = Award::findBySlug( $slug );
+		$this->authorize('update', $award);
 
 		return view( 'award/edit', compact( 'award' ) );
 	}
@@ -82,6 +85,7 @@ class AwardController extends Controller {
 	public function update( Request $request, $slug ) {
 
 		$award = Award::findBySlug( $slug );
+		$this->authorize('update', $award);
 		$award->update($request->all());
 		return redirect()->action('AwardController@show', $slug);
 	}
