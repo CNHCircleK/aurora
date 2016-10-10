@@ -31,4 +31,9 @@ class User extends Authenticatable
 	{
 		return $this->hasMany('App\Submission');
 	}
+
+	public function teams()
+	{
+		return $this->hasMany('App\Team', 'owner_id');
+	}
 }

@@ -46,6 +46,7 @@
                     <ul class="nav navbar-nav">
                         @if (!Auth::guest())
                             <li><a href="{{ action('AwardController@index') }}">Awards</a></li>
+                            <li><a href="{{ action('TeamController@index') }}">Teams</a></li>
                         @endif
                     </ul>
 

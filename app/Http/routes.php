@@ -22,4 +22,5 @@ Route::get('/home', 'HomeController@index');
 Route::group(['middleware' => 'auth'], function() {
 	Route::resource('awards', 'AwardController');
 	Route::resource('submissions', 'SubmissionController');
+	Route::resource('teams', 'TeamController');
 });

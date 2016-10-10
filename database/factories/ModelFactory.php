@@ -29,3 +29,9 @@ $factory->define(App\Award::class, function (Faker\Generator $faker) {
 		'user_id' => 1
 	];
 });
+
+$factory->define(App\Team::class, function (Faker\Generator $faker) {
+	return [
+		'name' => $faker->sentence(2)
+	];
+});
