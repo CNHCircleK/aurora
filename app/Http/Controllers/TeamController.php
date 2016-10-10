@@ -27,7 +27,7 @@ class TeamController extends Controller
      */
     public function create()
     {
-        //
+        return view('team/create');
     }
 
     /**
@@ -38,7 +38,8 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+	    $team = Team::create($request->all());
+	    return redirect()->action('TeamController@show', $team);
     }
 
     /**
