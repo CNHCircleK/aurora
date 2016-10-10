@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Teams</div>
+                    <div class="panel-heading">{{ trans_choice('team.teams', 2) }}</div>
 
                     <div class="panel-body">
                         <table class="table table-responsive">
@@ -19,7 +19,9 @@
 
                             @foreach($teams as $team)
                                 <tr>
-                                    <td><a href="{{action('AwardController@show', ['slug' => $team->slug])}}">{{$team->name}}</a></td>
+                                    <td>
+                                        <a href="{{action('TeamController@show', $team->id)}}">{{$team->name}}</a>
+                                    </td>
                                     <td>{{$team->owner->name}}</td>
                                 </tr>
                             @endforeach
