@@ -62,7 +62,8 @@ class TeamController extends Controller
      */
     public function edit($id)
     {
-        //
+	    $team = Team::find($id);
+        return view('team/edit', compact('team'));
     }
 
     /**
@@ -74,7 +75,10 @@ class TeamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+	    $team = Team::find( $id );
+	    $team->update($request->all());
+
+	    return redirect()->action('TeamController@show', $id);
     }
 
     /**
