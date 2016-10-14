@@ -12,6 +12,18 @@ class Invite extends Model
 	 * @var array
 	 */
 	protected $fillable = [
-		'email'
+		'email',
+		'token'
 	];
+
+	protected static function boot() {
+		parent::boot();
+
+		static::creating(function ($model)
+		{
+			if (!isset($model->token)) {
+				$model->token = str_random();
+			}
+		});
+	}
 }
