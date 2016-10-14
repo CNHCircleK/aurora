@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Invite;
+use App\Mail\Invitation;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Mail;
 
 class InviteController extends Controller
 {
@@ -48,7 +50,10 @@ class InviteController extends Controller
 	    // Create invites
 	    foreach ($emails as $email) {
 	    	// Create invite
-	    	Invite::create(['email' => $email]);
+	    	$invite = Invite::create(['email' => $email]);
+
+		    // Send invitation
+		    Mail::to($email)->send(new Invitation($invite));
 	    }
 
 	    return redirect()->action('InviteController@index');
