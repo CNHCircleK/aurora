@@ -16,6 +16,7 @@ class InviteController extends Controller
      */
     public function index()
     {
+    	$this->authorize('viewAll', Invite::class);
     	$invites = Invite::all();
 	    return view( 'invite/index', compact( 'invites' ) );
     }
@@ -27,7 +28,8 @@ class InviteController extends Controller
      */
     public function create()
     {
-        //
+	    $this->authorize('create', Invite::class);
+	    return view('invite/create');
     }
 
     /**
@@ -38,7 +40,18 @@ class InviteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('create', Invite::class);
+
+	    $emails = $request->input('emails');
+	    $emails = explode(',',$request->input('emails'));
+
+	    // Create invites
+	    foreach ($emails as $email) {
+	    	// Create invite
+	    	Invite::create(['email' => $email]);
+	    }
+
+	    return redirect()->action('InviteController@index');
     }
 
     /**
