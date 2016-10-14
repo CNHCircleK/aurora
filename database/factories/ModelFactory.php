@@ -35,3 +35,16 @@ $factory->define(App\Team::class, function (Faker\Generator $faker) {
 		'name' => $faker->sentence(2)
 	];
 });
+
+$factory->define(App\Invite::class, function (Faker\Generator $faker) {
+	return [
+		'email' => $faker->safeEmail
+	];
+});
+
+$factory->defineAs(App\Invite::class, 'accepted', function (Faker\Generator $faker) {
+	return [
+		'email' => $faker->safeEmail,
+		'accepted' => $faker->dateTimeInInterval('-1 week', '-1 day')
+	];
+});
