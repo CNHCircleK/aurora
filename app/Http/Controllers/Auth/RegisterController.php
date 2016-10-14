@@ -1,7 +1,9 @@
 <?php
 namespace App\Http\Controllers\Auth;
 
+use App\Invite;
 use App\User;
+use Carbon\Carbon;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -46,6 +48,7 @@ class RegisterController extends Controller {
 			'name'     => 'required|max:255',
 			'email'    => 'required|email|max:255|unique:users',
 			'password' => 'required|min:6|confirmed',
+			'invitation_code' => 'required|exists:invites,token'
 		] );
 	}
 
@@ -57,10 +60,19 @@ class RegisterController extends Controller {
 	 * @return User
 	 */
 	protected function create( array $data ) {
-		return User::create( [
+		$user = User::create( [
 			'name'     => $data['name'],
 			'email'    => $data['email'],
 			'password' => bcrypt( $data['password'] ),
 		] );
+
+		// Accept invitation if successful
+		if ($user) {
+			$invite = Invite::where('token', $data['invitation_code'])->firstOrFail();
+			$invite->accepted = Carbon::now();
+			$invite->save();
+		}
+
+		return $user;
 	}
 }
