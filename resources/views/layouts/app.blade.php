@@ -23,67 +23,80 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    @if (!Auth::guest())
-                        <li><a href="{{ action('AwardController@index') }}">Awards</a></li>
-                        <li><a href="{{ action('TeamController@index') }}">{{ trans_choice('team.teams', 2) }}</a></li>
-                    @endif
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
+    <header class="banner">
+        <div class="container container_no-padding">
+            <nav class="navbar navbar-default navbar-opaque">
+                <div class="masthead">
+                    <div class="masthead__logos">
+                        <div class="masthead__left">
+                            <a href="{{ url('/') }}">
+                                <img src="{{ asset('images/cki_wordmark.png') }}"
+                                     alt="CKI">
                             </a>
+                        </div>
 
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="{{ url('/logout') }}"
-                                       onclick="event.preventDefault();
+                        <div class="masthead__right">
+                            <img src="{{ asset('images/cnh_district_emblem.png') }}"
+                                 alt="California-Nevada-Hawaii District of Circle K International">
+                        </div>
+                    </div>
+
+                    <div class="masthead__stripes"></div>
+                </div>
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#primary-nav" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div class="collapse navbar-collapse" id="primary-nav">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="nav navbar-nav">
+                        @if (!Auth::guest())
+                            <li><a href="{{ action('AwardController@index') }}">Awards</a></li>
+                            <li><a href="{{ action('TeamController@index') }}">{{ trans_choice('team.teams', 2) }}</a></li>
+                        @endif
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- Authentication Links -->
+                        @if (Auth::guest())
+                            <li><a href="{{ url('/login') }}">Login</a></li>
+                            <li><a href="{{ url('/register') }}">Register</a></li>
+                        @else
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-expanded="false">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ url('/logout') }}"
+                                           onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
+                                            Logout
+                                        </a>
 
-                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST"
-                                          style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    @endif
-                </ul>
-            </div>
+                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST"
+                                              style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+                    </ul>
+                </div>
+            </nav>
         </div>
-    </nav>
+    </header>
 
     @yield('content')
 </div>
