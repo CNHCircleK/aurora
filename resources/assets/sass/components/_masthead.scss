@@ -1,0 +1,20 @@
+.masthead {
+  .masthead__logos {
+    padding: 10px;
+    * {
+      display: inline;
+      height: 50px;
+    }
+
+    .masthead__right {
+      float: right;
+    }
+  }
+
+  .masthead__stripes {
+    background: url(../images/stripes-navy.png);
+    background-size: 80% auto;
+    height: 6px;
+    width: 100%;
+  }
+}
