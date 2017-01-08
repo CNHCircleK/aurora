@@ -19,5 +19,5 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::resource('awards', 'AwardController');
 	Route::resource('invites', 'InviteController');
 	Route::resource('submissions', 'SubmissionController');
-	Route::resource('teams', 'TeamController');
+	Route::resource(strtolower(trans_choice('team.teams', 2)), 'TeamController');
 });
