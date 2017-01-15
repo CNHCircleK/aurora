@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SubmissionConfirmation;
 use App\Submission;
 use Auth;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Mail;
 
 class SubmissionController extends Controller
 {
@@ -39,11 +41,16 @@ class SubmissionController extends Controller
 	public function store( Request $request ) {
 		$path = $request->file('file')->store('submissions', 'public');
 
-		Submission::create([
+		$submission = Submission::create([
 			'file' => $path,
 			'award_id' => $request->input('award_id'),
 			'user_id' => Auth::id()
 		]);
+
+		// Send confirmation email
+		$email = Auth::user()->email;
+
+		Mail::to($email)->send(new SubmissionConfirmation($submission));
 
 		return redirect()->back();
 	}
