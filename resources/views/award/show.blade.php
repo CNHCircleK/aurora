@@ -16,6 +16,22 @@
                     </div>
                 </div>
 
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Submit Files
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            You may submit as many files as necessary. You may also delete any files you no longer wish to be reviewed.
+                        </p>
+                        {!! Form::open(['action' => 'SubmissionController@store', 'files' => true]) !!}
+                        {!! Form::file('file') !!}
+                        {!! Form::hidden('award_id', $award->id) !!}
+                        <br/>
+                        {!! Form::submit('Submit', ['class' => 'btn btn-block btn-success']) !!}
+                        {!! Form::close() !!}
+                    </div>
+                </div>
 
                 @if(!$submissions->isEmpty())
                     @cannot('viewAll', App\Submission::class)
@@ -38,20 +54,6 @@
                             </div>
                         </div>
                     @endcannot
-                @else
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Make a Submission
-                        </div>
-                        <div class="panel-body">
-                            {!! Form::open(['action' => 'SubmissionController@store', 'files' => true]) !!}
-                            {!! Form::file('file') !!}
-                            {!! Form::hidden('award_id', $award->id) !!}
-                            <br/>
-                            {!! Form::submit('Submit', ['class' => 'btn btn-success']) !!}
-                            {!! Form::close() !!}
-                        </div>
-                    </div>
                 @endif
             </div>
         </div>
