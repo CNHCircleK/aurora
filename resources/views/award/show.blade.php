@@ -40,17 +40,34 @@
                                 Submissions
                             </div>
                             <div class="panel-body">
-                                @foreach($submissions as $submission)
-                                    <object data="{{ Storage::url($submission->file) }}" type="application/pdf"
-                                            width="100%"
-                                            height="600px">
-                                        <iframe src="{{ Storage::url($submission->file) }}" width="100%" height="500px"
-                                                style="border: none;">
-                                            This browser does not support PDFs. Please download the PDF to view it: <a
-                                                    href="{{ Storage::url($submission->file) }}">Download PDF</a>
-                                        </iframe>
-                                    </object>
-                                @endforeach
+                                <div class="panel-group" id="submission-list" role="tablist" aria-multiselectable="true">
+                                    @foreach($submissions as $submission)
+                                        <div class="panel panel-default">
+                                            <div class="panel-default">
+                                                <div class="panel-heading" role="tab" id="heading-{{$submission->id}}">
+                                                    <h4 class="panel-title">
+                                                        <a role="button" data-toggle="collapse" data-parent="#submission-list" href="#collapse-{{$submission->id}}" aria-expanded="true" aria-controls="collapseOne">
+                                                            {{ $submission->file }}
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                            <div id="collapse-{{$submission->id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                                <div class="panel-body">
+                                                    <object data="{{ Storage::url($submission->file) }}" type="application/pdf"
+                                                            width="100%"
+                                                            height="600px">
+                                                        <iframe src="{{ Storage::url($submission->file) }}" width="100%" height="500px"
+                                                                style="border: none;">
+                                                            This browser does not support PDFs. Please download the PDF to view it: <a
+                                                                    href="{{ Storage::url($submission->file) }}">Download PDF</a>
+                                                        </iframe>
+                                                    </object>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     @endcannot
