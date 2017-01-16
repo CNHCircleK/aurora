@@ -40,6 +40,7 @@
                                 Submissions
                             </div>
                             <div class="panel-body">
+                                <p>Click to expand</p>
                                 <div class="panel-group" id="submission-list" role="tablist" aria-multiselectable="true">
                                     @foreach($submissions as $submission)
                                         <div class="panel panel-default">
