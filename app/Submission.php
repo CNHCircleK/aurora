@@ -14,6 +14,7 @@ class Submission extends Model
 	 */
 	protected $fillable = [
 		'file',
+		'orig_filename',
 		'award_id',
 		'user_id'
 	];

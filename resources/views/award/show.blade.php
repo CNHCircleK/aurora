@@ -48,7 +48,7 @@
                                                 <div class="panel-heading" role="tab" id="heading-{{$submission->id}}">
                                                     <h4 class="panel-title">
                                                         <a role="button" data-toggle="collapse" data-parent="#submission-list" href="#collapse-{{$submission->id}}" aria-expanded="true" aria-controls="collapseOne">
-                                                            {{ $submission->file }}
+                                                            {{ $submission->orig_filename }}
                                                         </a>
                                                     </h4>
                                                 </div>

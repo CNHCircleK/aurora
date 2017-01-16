@@ -16,6 +16,7 @@ class CreateSubmissionsTable extends Migration
         Schema::create('submissions', function (Blueprint $table) {
             $table->increments('id');
 	        $table->string('file');
+	        $table->string('orig_filename');
 	        $table->integer('award_id')->unsigned();
 	        $table->foreign('award_id')->references('id')->on('awards')->onDelete('cascade');
 	        $table->integer('user_id')->unsigned();
