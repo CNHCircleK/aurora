@@ -16,9 +16,9 @@
 
     <!-- Scripts -->
     <script>
-        window.Laravel = <?php echo json_encode( [
-                'csrfToken' => csrf_token(),
-        ] ); ?>
+      window.Laravel = <?php echo json_encode( [
+			'csrfToken' => csrf_token(),
+		] ); ?>
     </script>
 </head>
 <body>
@@ -59,7 +59,8 @@
                     <ul class="nav navbar-nav">
                         @if (!Auth::guest())
                             <li><a href="{{ action('AwardController@index') }}">Awards</a></li>
-                            <li><a href="{{ action('TeamController@index') }}">{{ trans_choice('team.teams', 2) }}</a></li>
+                            <li><a href="{{ action('TeamController@index') }}">{{ trans_choice('team.teams', 2) }}</a>
+                            </li>
                         @endif
                     </ul>
 
@@ -97,6 +98,27 @@
             </nav>
         </div>
     </header>
+
+    {{-- Flash Messages --}}
+    @if(Session::has('message'))
+        <div class="container">
+            <div class="alert alert-success alert-dismissable" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                {{ Session::get('message') }}
+            </div>
+        </div>
+    @endif
+
+    @if(Session::has('error-message'))
+        <div class="container">
+            <div class="alert alert-danger alert-dismissable" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                {{ Session::get('error-message') }}
+            </div>
+        </div>
+    @endif
 
     @yield('content')
 </div>
