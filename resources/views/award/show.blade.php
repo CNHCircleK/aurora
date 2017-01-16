@@ -25,7 +25,7 @@
                             You may submit as many files as necessary. You may also delete any files you no longer wish to be reviewed.
                         </p>
                         {!! Form::open(['action' => 'SubmissionController@store', 'files' => true]) !!}
-                        {!! Form::file('file') !!}
+                        {!! Form::file('files[]', ['multiple' => 'multiple']) !!}
                         {!! Form::hidden('award_id', $award->id) !!}
                         <br/>
                         {!! Form::submit('Submit', ['class' => 'btn btn-block btn-success']) !!}

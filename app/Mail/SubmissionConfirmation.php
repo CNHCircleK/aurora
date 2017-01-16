@@ -4,6 +4,7 @@ namespace App\Mail;
 
 use App\Award;
 use App\Submission;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -14,9 +15,9 @@ class SubmissionConfirmation extends Mailable
     use Queueable, SerializesModels;
 
 	/**
-	 * @var Submission
+	 * @var \DateTime
 	 */
-	public $submission;
+	public $submission_date;
 
 	/**
 	 * @var Award
@@ -26,12 +27,12 @@ class SubmissionConfirmation extends Mailable
 	/**
 	 * Create a new message instance.
 	 *
-	 * @param Submission $submission
+	 * @param $award_id
 	 */
-    public function __construct(Submission $submission)
+    public function __construct($award_id)
     {
-        $this->submission = $submission;
-        $this->award = $submission->award;
+        $this->submission_date = Carbon::now();
+        $this->award = Award::find($award_id);
     }
 
     /**

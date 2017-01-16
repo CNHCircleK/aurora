@@ -8,6 +8,7 @@ use Auth;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Http\UploadedFile;
 use Mail;
 
 class SubmissionController extends Controller
@@ -39,22 +40,37 @@ class SubmissionController extends Controller
      * @return \Illuminate\Http\Response
      */
 	public function store( Request $request ) {
-		$file = $request->file('file');
-		$path = $file->store('submissions', 'public');
+		$award_id = $request->input('award_id');
 
-		$submission = Submission::create([
-			'file' => $path,
-			'orig_filename' => $file->getClientOriginalName(),
-			'award_id' => $request->input('award_id'),
-			'user_id' => Auth::id()
-		]);
+		foreach($request->file('files') as $file) {
+			$this->_processSubmission($award_id, $file);
+		}
 
 		// Send confirmation email
 		$email = Auth::user()->email;
 
-		Mail::to($email)->send(new SubmissionConfirmation($submission));
+		Mail::to($email)->send(new SubmissionConfirmation($award_id));
 
 		return redirect()->back();
+	}
+
+	/**
+	 * Processes submission
+	 *
+	 * Stores and creates files
+	 *
+	 * @param $award_id
+	 * @param UploadedFile $file
+	 */
+	private function _processSubmission($award_id, UploadedFile $file) {
+		$path = $file->store('submissions', 'public');
+
+		Submission::create([
+			'file' => $path,
+			'orig_filename' => $file->getClientOriginalName(),
+			'award_id' => $award_id,
+			'user_id' => Auth::id()
+		]);
 	}
 
     /**
