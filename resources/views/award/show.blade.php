@@ -63,6 +63,12 @@
                                                                     href="{{ Storage::url($submission->file) }}">Download PDF</a>
                                                         </iframe>
                                                     </object>
+                                                    {{ Form::open(['action' => ['SubmissionController@destroy', $submission->id], 'method' => 'DELETE']) }}
+                                                        <button class="btn btn-danger btn-block" type="submit">
+                                                            <span class="glyphicon glyphicon-remove"></span>
+                                                            Delete
+                                                        </button>
+                                                    {{ Form::close() }}
                                                 </div>
                                             </div>
                                         </div>

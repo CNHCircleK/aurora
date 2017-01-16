@@ -97,6 +97,15 @@ class SubmissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+    	$object = Submission::find($id);
+
+	    $this->authorize('delete', $object);
+
+	    if ($object->delete()) {
+	        return redirect()->back()->with('message', 'Successfully deleted!');
+	    }
+	    else {
+	    	return redirect()->back()->with('error-message', 'Could not delete!');
+	    }
     }
 }
