@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Invite;
+use App\Team;
 use App\User;
 use Carbon\Carbon;
 use Validator;
@@ -25,7 +26,7 @@ class RegisterController extends Controller {
 	 *
 	 * @var string
 	 */
-	protected $redirectTo = '/home';
+	protected $redirectTo = '/';
 
 	/**
 	 * Create a new controller instance.
@@ -65,6 +66,11 @@ class RegisterController extends Controller {
 			'email'    => $data['email'],
 			'password' => bcrypt( $data['password'] ),
 		] );
+
+		$team = Team::create([
+			'name' => $data['school'],
+			'owner_id' => $user->id
+		]);
 
 		// Accept invitation if successful
 		if ($user) {

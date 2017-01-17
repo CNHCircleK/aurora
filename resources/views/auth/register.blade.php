@@ -58,12 +58,27 @@
                                 <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="text" class="form-control"
+                                    <input id="password-confirm" type="password" class="form-control"
                                            name="password_confirmation" required>
 
                                     @if ($errors->has('password_confirmation'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('school') ? ' has-error' : '' }}">
+                                <label for="school" class="col-md-4 control-label">School</label>
+
+                                <div class="col-md-6">
+                                    {!! Form::text('school', Request::input('school'),
+                                    ['id' => 'school', 'class' => 'form-control', 'required']) !!}
+
+                                    @if ($errors->has('school'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('school') }}</strong>
                                     </span>
                                     @endif
                                 </div>
