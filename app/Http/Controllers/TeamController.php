@@ -16,6 +16,7 @@ class TeamController extends Controller
      */
     public function index()
     {
+	    $this->authorize('viewAll', Team::class);
         $teams = Team::all();
 	    return view('team/index', compact('teams'));
     }
@@ -27,6 +28,7 @@ class TeamController extends Controller
      */
     public function create()
     {
+	    $this->authorize('create', Team::class);
         return view('team/create');
     }
 
@@ -38,6 +40,7 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
+	    $this->authorize('create', Team::class);
 	    $team = Team::create($request->all());
 	    return redirect()->action('TeamController@show', $team);
     }
@@ -51,6 +54,7 @@ class TeamController extends Controller
     public function show($id)
     {
     	$team = Team::find($id);
+	    $this->authorize('view', $team);
         return view('team/show', compact('team'));
     }
 
@@ -63,6 +67,7 @@ class TeamController extends Controller
     public function edit($id)
     {
 	    $team = Team::find($id);
+	    $this->authorize('update', $team);
         return view('team/edit', compact('team'));
     }
 
@@ -76,6 +81,7 @@ class TeamController extends Controller
     public function update(Request $request, $id)
     {
 	    $team = Team::find( $id );
+	    $this->authorize('update', $team);
 	    $team->update($request->all());
 
 	    return redirect()->action('TeamController@show', $id);

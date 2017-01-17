@@ -59,8 +59,17 @@
                     <ul class="nav navbar-nav">
                         @if (!Auth::guest())
                             <li><a href="{{ action('AwardController@index') }}">Awards</a></li>
-                            <li><a href="{{ action('TeamController@index') }}">{{ trans_choice('team.teams', 2) }}</a>
-                            </li>
+                            @if (Auth::user()->admin)
+                                <li>
+                                    <a href="{{ action('TeamController@index') }}">{{ trans_choice('team.teams', 2) }}</a>
+                                </li>
+                            @else
+                                <li>
+                                    <a href="{{ action('TeamController@show', Auth::user()->team->id) }}">
+                                        My {{ trans_choice('team.teams', 1) }}
+                                    </a>
+                                </li>
+                            @endif
                         @endif
                     </ul>
 
