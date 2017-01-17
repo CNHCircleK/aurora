@@ -4,11 +4,14 @@
 
 @media (max-width: $grid-float-breakpoint) {
   #primary-nav.navbar-collapse {
-    background-color: rgba(255, 255, 255, 0.9);
     position: absolute;
     left: 0;
     top: 116px;
     width: 100%;
     z-index: 999;
+  }
+
+  .navbar-collapse-opaque {
+    background-color: rgba(255, 255, 255, 0.9);
   }
 }

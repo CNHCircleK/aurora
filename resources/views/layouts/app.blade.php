@@ -25,7 +25,7 @@
 <div id="app">
     <header class="banner">
         <div class="container container_no-padding">
-            <nav class="navbar navbar-default navbar-opaque">
+            <nav class="navbar navbar-default">
                 <div class="masthead">
                     <div class="masthead__logos">
                         <div class="masthead__left">
@@ -54,7 +54,7 @@
                     </button>
                 </div>
 
-                <div class="collapse navbar-collapse" id="primary-nav">
+                <div class="collapse navbar-collapse navbar-collapse-opaque" id="primary-nav">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         @if (!Auth::guest())
