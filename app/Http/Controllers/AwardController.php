@@ -54,7 +54,7 @@ class AwardController extends Controller {
 	 */
 	public function show( $slug ) {
 		$award = Award::findBySlug( $slug );
-		$submissions = Submission::where('user_id', Auth::id())->get();
+		$submissions = Submission::where('user_id', Auth::id())->where('award_id', $award->id)->get();
 
 		return view( 'award/show', compact( 'award', 'submissions' ) );
 	}
