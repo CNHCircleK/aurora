@@ -12,7 +12,7 @@
 
                         <p><strong>Deadline: </strong> {{$award->deadline}}</p>
 
-                        {{$award->description}}
+                        {!! $award->description !!}
                     </div>
                 </div>
 

@@ -21,3 +21,13 @@
         </div>
     </div>
 @endsection
+
+@section('after-js')
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>
+      tinymce.init({
+        selector: '#description',
+        menubar: 'edit view format'
+      });
+    </script>
+@endsection

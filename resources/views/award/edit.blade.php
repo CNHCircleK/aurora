@@ -13,7 +13,7 @@
                         {!! BootForm::text('Slug', 'slug', $award->slug) !!}
                         <div class="form-group">
                             {!! Form::label('Description') !!}
-                            {!! Form::textarea('description', $award->description, ['class' => 'form-control']) !!}
+                            {!! Form::textarea('description', $award->description, ['class' => 'form-control', 'id' => 'description']) !!}
                         </div>
                         {!! BootForm::date('Open', 'open', $award->open) !!}
                         {!! BootForm::date('Deadline', 'deadline', $award->deadline) !!}
@@ -24,4 +24,14 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('after-js')
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>
+      tinymce.init({
+        selector: '#description',
+        menubar: 'edit view format'
+      });
+    </script>
 @endsection
