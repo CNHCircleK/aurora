@@ -34,6 +34,8 @@ class Invitation extends Mailable
      */
     public function build()
     {
-        return $this->view('invite.email')->subject('Online Awards System Invitation');
+        return $this->view('invite.emails.invite')
+	        ->text('invite.emails.invite_plain')
+	        ->subject('Online Awards System Invitation');
     }
 }
