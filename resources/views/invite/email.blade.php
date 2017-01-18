@@ -1,4 +1,4 @@
 Please use the following link to register:
-{{ url('/register', ['code' => $invite->token, 'email' => $invite->email]) }}
+{{ action('Auth\RegisterController@showRegistrationForm', ['code' => $invite->token, 'email' => $invite->email]) }}
 
-Not working? Try using this invitation code to register: {{ $invite->code }}
+Not working? Try using this invitation code to register: {{ $invite->token }}
