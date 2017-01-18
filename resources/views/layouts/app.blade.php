@@ -63,6 +63,9 @@
                                 <li>
                                     <a href="{{ action('TeamController@index') }}">{{ trans_choice('team.teams', 2) }}</a>
                                 </li>
+                                <li>
+                                    <a href="{{ action('InviteController@index') }}">Invitations</a>
+                                </li>
                             @else
                                 <li>
                                     <a href="{{ action('TeamController@show', Auth::user()->team->id) }}">
