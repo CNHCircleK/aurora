@@ -16,7 +16,8 @@ class Submission extends Model
 		'file',
 		'orig_filename',
 		'award_id',
-		'user_id'
+		'user_id',
+		'team_id'
 	];
 
 	protected static function boot() {
@@ -38,5 +39,10 @@ class Submission extends Model
 	public function user()
 	{
 		return $this->belongsTo('App\User');
+	}
+
+	public function team()
+	{
+		return $this->belongsTo('App\Team');
 	}
 }

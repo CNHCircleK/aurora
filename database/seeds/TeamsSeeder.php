@@ -17,7 +17,7 @@ class TeamsSeeder extends Seeder
 	public function run()
 	{
 		factory(App\User::class, 9)->create()->each(function($u) {
-			$u->teams()->save(factory(App\Team::class)->make());
+			$u->team()->save(factory(App\Team::class)->make());
 		});
 	}
 }

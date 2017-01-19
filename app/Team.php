@@ -32,4 +32,9 @@ class Team extends Model
 	{
 		return $this->belongsTo('App\User', 'owner_id');
 	}
+
+	public function submissions()
+	{
+		return $this->hasMany('App\Submission');
+	}
 }

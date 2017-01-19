@@ -69,7 +69,8 @@ class SubmissionController extends Controller
 			'file' => $path,
 			'orig_filename' => $file->getClientOriginalName(),
 			'award_id' => $award_id,
-			'user_id' => Auth::id()
+			'user_id' => Auth::id(),
+			'team_id' => Auth::user()->team->id
 		]);
 	}
 
