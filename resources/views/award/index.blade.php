@@ -8,7 +8,7 @@
                     <div class="panel-heading clearfix">
                         Awards
                         @can('create', App\Award::class)
-                        <span class="pull-right">
+                            <span class="pull-right">
                             <a href="{{action('AwardController@create')}}"
                                class="btn btn-success btn-sm">Create Award</a>
                         </span>
@@ -16,29 +16,22 @@
                     </div>
 
                     <div class="panel-body">
-                        <table class="table table-responsive">
-                            <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Open</th>
-                                <th>Deadline</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
+                        <div class="row">
                             @foreach($awards as $award)
-                                <tr>
-                                    <td>
-                                        <a href="{{action('AwardController@show', ['slug' => $award->slug])}}">{{$award->name}}</a>
-                                    </td>
-                                    <td>{{$award->description}}</td>
-                                    <td>{{$award->open}}</td>
-                                    <td>{{$award->deadline}}</td>
-                                </tr>
+                                <div class="col-sm-6 col-md-4">
+                                    <a href="{{action('AwardController@show', ['slug' => $award->slug])}}" class="award-item">
+                                        <div class="panel panel-rounded panel-primary">
+                                            <div class="panel-body">
+                                                <h2>{{$award->name}}</h2>
+                                            </div>
+                                            <div class="panel-footer">
+                                                <small>Due {{ (new \Carbon\Carbon($award->deadline))->format('l, F j, Y h:i A') }}</small>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
                             @endforeach
-                            </tbody>
-                        </table>
+                        </div>
                     </div>
                 </div>
             </div>

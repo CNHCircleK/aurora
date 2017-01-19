@@ -1,3 +1,29 @@
 .panel-heading_no-padding {
   padding: 0;
 }
+
+.panel-rounded {
+  border-radius: 5px;
+}
+
+.award-item {
+  &:hover {
+    text-decoration: none;
+
+    .panel {
+      background-color: lighten($gray-lighter, 0.3);
+      transition: background-color 0.2s;
+    }
+  }
+
+  .panel {
+    .panel-body {
+      min-height: 175px;
+    }
+
+    .panel-footer {
+      color: #fff;
+      background-color: $brand-primary;
+    }
+  }
+}
