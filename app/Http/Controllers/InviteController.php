@@ -53,7 +53,7 @@ class InviteController extends Controller
 	    	$invite = Invite::create(['email' => $email]);
 
 		    // Send invitation
-		    Mail::to($email)->send(new Invitation($invite));
+		    Mail::to($email)->queue(new Invitation($invite));
 	    }
 
 	    return redirect()->action('InviteController@index');
