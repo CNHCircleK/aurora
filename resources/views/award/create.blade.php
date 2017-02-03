@@ -11,7 +11,7 @@
                         {!! BootForm::open()->action(action('AwardController@store')) !!}
                         {!! BootForm::text('Name', 'name') !!}
                         {!! BootForm::textarea('Description', 'description') !!}
-                        {!! BootForm::date('Open', 'open') !!}
+                        {!! BootForm::date('Open', 'open', \Carbon\Carbon::now()) !!}
                         {!! BootForm::date('Deadline', 'deadline') !!}
                         {!! BootForm::submit('Create') !!}
                         {!! BootForm::close() !!}
