@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
+@section('title', 'Create Award')
+
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Create Award</div>
-
                     <div class="panel-body">
                         {!! BootForm::open()->action(action('AwardController@store')) !!}
                         {!! BootForm::text('Name', 'name') !!}

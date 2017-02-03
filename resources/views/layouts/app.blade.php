@@ -132,6 +132,23 @@
         </div>
     @endif
 
+    <div class="post__header">
+        <div class="header-wrapper header-wrapper_awards">
+            <div class="container">
+                <div class="header-content">
+                    <div class="row row_valign">
+                        <div class="col-sm-5">
+                            <h1 class="bg-ckinavy">Awards Submissions</h1>
+                        </div>
+                        <div class="col-sm-7 text-right">
+                            <h3>@yield('title')</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @yield('content')
 </div>
 

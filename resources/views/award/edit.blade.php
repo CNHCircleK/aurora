@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
+@section('title', 'Edit ' . $award->name)
+
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{$award->name}}</div>
-
                     <div class="panel-body">
                         {!! BootForm::open()->action(action('AwardController@update', $award->slug))->patch() !!}
                         {!! BootForm::text('Name', 'name', $award->name) !!}

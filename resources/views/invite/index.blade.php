@@ -1,19 +1,20 @@
 @extends('layouts.app')
 
+@section('title', 'Invites')
+
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading clearfix">
-                        Invites
-                        @can('create', App\Invite::class)
+                    @can('create', App\Invite::class)
+                        <div class="panel-heading clearfix">
                             <span class="pull-right">
                             <a href="{{action('InviteController@create')}}"
                                class="btn btn-success btn-sm">Invite</a>
-                        </span>
-                        @endcan
-                    </div>
+                            </span>
+                        </div>
+                    @endcan
 
                     <div class="panel-body">
                         <table class="table table-responsive">

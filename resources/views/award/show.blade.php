@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
+@section('title', $award->name)
+
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{$award->name}}</div>
-
                     <div class="panel-body">
                         <p><strong>Opens: </strong> {{$award->open}}</p>
 

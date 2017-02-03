@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
+@section('title', trans_choice('team.teams', 2))
+
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{ trans_choice('team.teams', 2) }}</div>
-
                     <div class="panel-body">
                         <table class="table table-responsive">
                             <thead>
