@@ -25,6 +25,13 @@ class Award extends Model {
 		'user_id'
 	];
 
+	protected $dates = [
+		'created_at',
+		'updated_at',
+		'open',
+		'deadline'
+	];
+
 	protected static function boot() {
 		parent::boot();
 

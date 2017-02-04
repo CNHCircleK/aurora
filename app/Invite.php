@@ -16,6 +16,12 @@ class Invite extends Model
 		'token'
 	];
 
+	protected $dates = [
+		'created_at',
+		'updated_at',
+		'accepted',
+	];
+
 	protected static function boot() {
 		parent::boot();
 
