@@ -116,27 +116,6 @@
         </div>
     </header>
 
-    {{-- Flash Messages --}}
-    @if(Session::has('message'))
-        <div class="container">
-            <div class="alert alert-success alert-dismissable" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                {{ Session::get('message') }}
-            </div>
-        </div>
-    @endif
-
-    @if(Session::has('error-message'))
-        <div class="container">
-            <div class="alert alert-danger alert-dismissable" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                {{ Session::get('error-message') }}
-            </div>
-        </div>
-    @endif
-
     <div class="post__header">
         <div class="header-wrapper header-wrapper_awards">
             <div class="container">
@@ -147,6 +126,27 @@
                         </div>
                         <div class="col-sm-7 text-right">
                             <h3>@yield('title')</h3>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            {{-- Flash Messages --}}
+                            @if(Session::has('message'))
+                                <div class="alert alert-success alert-dismissable" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                                aria-hidden="true">&times;</span></button>
+                                    {{ Session::get('message') }}
+                                </div>
+                            @endif
+
+                            @if(Session::has('error-message'))
+                                <div class="alert alert-danger alert-dismissable" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                                aria-hidden="true">&times;</span></button>
+                                    {{ Session::get('error-message') }}
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
