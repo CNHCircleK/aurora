@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email',
     ];
 
     /**
@@ -35,5 +35,13 @@ class User extends Authenticatable
 	public function team()
 	{
 		return $this->hasOne('App\Team', 'owner_id');
+	}
+
+	public function setPasswordAttribute($password)
+	{
+		if (!empty($password))
+		{
+			$this->attributes['password'] = bcrypt($password);
+		}
 	}
 }
