@@ -108,7 +108,8 @@ class UserController extends Controller
 		    'email'    => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
 		    'password' => 'min:6|confirmed',
 	    ]);
-    	$user->save();
+	    
+    	$user->update($request->all());
 
         return redirect()->back()->withMessage('Your user settings have been saved!');
     }
