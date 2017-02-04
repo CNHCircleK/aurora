@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Validator;
 
 class UserController extends Controller
 {
@@ -25,7 +26,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+    	$this->authorize('create', User::class);
+        return view('user.create');
     }
 
     /**
@@ -36,7 +38,36 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('create', User::class);
+
+        $data = $request->all();
+
+        if ($request->input('generate_pw')) {
+        	$randomPw = str_random();
+        	$data['password'] = $randomPw;
+        	$data['password_confirmation'] = $randomPw;
+        }
+
+	    Validator::make($data, [
+		    'name'     => 'required|max:255',
+		    'email'    => 'required|email|max:255|unique:users',
+		    'password' => 'required|min:6|confirmed',
+		    'invitation_code' => 'required|exists:invites,token'
+	    ]);
+
+        $user = User::create($data);
+
+        if ($user->id) {
+        	if ($randomPw) {
+		        return redirect()->back()->withMessage("User created! Password is {$randomPw}");
+	        }
+	        else {
+		        return redirect()->back()->withMessage('User created!');
+	        }
+        }
+        else {
+        	return redirect()->back()->with('error-message', 'Could not create user!');
+        }
     }
 
     /**

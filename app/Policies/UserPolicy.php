@@ -9,6 +9,13 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
+	public function before($user, $ability)
+	{
+		if ($user->admin) {
+			return true;
+		}
+	}
+
     /**
      * Determine whether the user can view the user.
      *
@@ -29,7 +36,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        //
+    	return $user->admin;
     }
 
 	/**
@@ -41,7 +48,7 @@ class UserPolicy
 	 */
     public function update(User $user, User $userObj)
     {
-	    return $user->admin || $userObj->id === \Auth::id();
+	    return $userObj->id === \Auth::id();
     }
 
     /**
@@ -53,6 +60,6 @@ class UserPolicy
      */
     public function delete(User $user, User $userObj)
     {
-        //
+        return $user->admin;
     }
 }
