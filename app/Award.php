@@ -3,6 +3,7 @@
 namespace App;
 
 use Auth;
+use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
@@ -52,5 +53,15 @@ class Award extends Model {
 	public function submissions()
 	{
 		return $this->hasMany('App\Submission');
+	}
+
+	public function setOpenAttribute($open)
+	{
+		$this->attributes['open'] = Carbon::parse($open);
+	}
+
+	public function setDeadlineAttribute($deadline)
+	{
+		$this->attributes['deadline'] = Carbon::parse($deadline);
 	}
 }
