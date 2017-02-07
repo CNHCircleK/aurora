@@ -73,11 +73,13 @@
                                     <a href="{{ action('InviteController@index') }}">Invitations</a>
                                 </li>
                             @else
-                                <li>
-                                    <a href="{{ action('TeamController@show', Auth::user()->team->id) }}">
-                                        My {{ trans_choice('team.teams', 1) }}
-                                    </a>
-                                </li>
+                                @if (Auth::user()->team)
+                                    <li>
+                                        <a href="{{ action('TeamController@show', Auth::user()->team->id) }}">
+                                            My {{ trans_choice('team.teams', 1) }}
+                                        </a>
+                                    </li>
+                                @endif
                             @endif
                         @endif
                     </ul>
