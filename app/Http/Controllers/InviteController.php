@@ -42,6 +42,18 @@ class InviteController extends Controller
 
 	    $email_count = count($emails);
 
+	    // Validate emails
+	    $errors = [];
+	    foreach ($emails as $email) {
+		    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			    $errors[] = "{$email} is not a valid email!";
+		    }
+	    }
+
+	    if (count($errors) > 0) {
+		    return redirect()->back()->withInput()->withErrors($errors);
+	    }
+
     	return view('invite/createConfirm', compact('emails', 'email_count'));
     }
 
@@ -56,6 +68,13 @@ class InviteController extends Controller
         $this->authorize('create', Invite::class);
 
         $emails = $request->input('emails');
+
+	    // Validate emails
+	    foreach ($emails as $email) {
+		    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			    abort(500, 'Invalid emails submitted!');
+		    }
+	    }
 
 	    // Create invites
 	    foreach ($emails as $email) {
