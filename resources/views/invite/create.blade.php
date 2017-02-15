@@ -8,9 +8,9 @@
             <div class="col-sm-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        {!! BootForm::open()->action(action('InviteController@store')) !!}
+                        {!! BootForm::open()->action(action('InviteController@createConfirm')) !!}
                         {!! BootForm::textarea('Emails', 'emails') !!}
-                        {!! BootForm::submit('Send Invites') !!}
+                        {!! BootForm::submit('Next') !!}
                         {!! BootForm::close() !!}
                     </div>
                 </div>

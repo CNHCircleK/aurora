@@ -34,6 +34,17 @@ class InviteController extends Controller
 	    return view('invite/create');
     }
 
+    public function createConfirm(Request $request)
+    {
+	    $emails = str_replace(' ', '', $request->input('emails'));  // Remove spaces
+	    $emails = explode(',', $emails);                            // Convert to array
+	    $emails = array_unique($emails);                            // Remove duplicates
+
+	    $email_count = count($emails);
+
+    	return view('invite/createConfirm', compact('emails', 'email_count'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -44,8 +55,7 @@ class InviteController extends Controller
     {
         $this->authorize('create', Invite::class);
 
-	    $emails = $request->input('emails');
-	    $emails = explode(',',$request->input('emails'));
+        $emails = $request->input('emails');
 
 	    // Create invites
 	    foreach ($emails as $email) {
@@ -56,7 +66,9 @@ class InviteController extends Controller
 		    Mail::to($email)->queue(new Invitation($invite));
 	    }
 
-	    return redirect()->action('InviteController@index');
+	    $email_count = count($emails);
+
+	    return redirect()->action('InviteController@index')->withMessage("Send invitations to {$email_count} emails");
     }
 
     /**
