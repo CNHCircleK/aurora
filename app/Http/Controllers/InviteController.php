@@ -37,7 +37,7 @@ class InviteController extends Controller
     public function createConfirm(Request $request)
     {
 	    $emails = str_replace(' ', '', $request->input('emails'));  // Remove spaces
-	    $emails = explode(',', $emails);                            // Convert to array
+	    $emails = explode("\r\n", $emails);                         // Convert to array
 	    $emails = array_unique($emails);                            // Remove duplicates
 
 	    $email_count = count($emails);

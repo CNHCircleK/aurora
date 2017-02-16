@@ -9,7 +9,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         {!! BootForm::open()->action(action('InviteController@createConfirm')) !!}
-                        {!! BootForm::textarea('Emails', 'emails') !!}
+                        {!! BootForm::textarea('Emails (separated by new line)', 'emails') !!}
                         {!! BootForm::submit('Next') !!}
                         {!! BootForm::close() !!}
                     </div>
