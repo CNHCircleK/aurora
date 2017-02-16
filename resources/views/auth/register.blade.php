@@ -71,7 +71,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('school') ? ' has-error' : '' }}">
-                                <label for="school" class="col-md-4 control-label">School</label>
+                                <label for="school" class="col-md-4 control-label">School / Division</label>
 
                                 <div class="col-md-6">
                                     {!! Form::text('school', Request::input('school'),
