@@ -26,7 +26,7 @@
                             to be reviewed.
                         </p>
                         {!! Form::open(['action' => 'SubmissionController@store', 'files' => true]) !!}
-                        {!! Form::file('files[]', ['multiple' => 'multiple']) !!}
+                        {!! Form::file('files[]', ['multiple' => 'multiple', 'accept' => 'application/pdf']) !!}
                         {!! Form::hidden('award_id', $award->id) !!}
                         <br/>
                         {!! Form::submit('Submit', ['class' => 'btn btn-block btn-success']) !!}

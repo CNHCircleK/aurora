@@ -40,6 +40,12 @@ class SubmissionController extends Controller
      * @return \Illuminate\Http\Response
      */
 	public function store( Request $request ) {
+		$this->validate($request, [
+			'files.*' => 'required|file|mimes:pdf'
+		], [
+			'mimes' => 'Submissions must be in PDF format.'
+		]);
+
 		$award_id = $request->input('award_id');
 
 		foreach($request->file('files') as $file) {
