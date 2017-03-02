@@ -71,4 +71,14 @@ class Award extends Model {
 	{
 		$this->attributes['deadline'] = Carbon::parse($deadline);
 	}
+
+	public function isOpen()
+	{
+		return Carbon::now() >= $this->attributes['open'] && Carbon::now() < $this->attributes['deadline'];
+	}
+
+	public function isClosed()
+	{
+		return !$this->isOpen();
+	}
 }

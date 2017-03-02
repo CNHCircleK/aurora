@@ -16,23 +16,29 @@
                     </div>
                 </div>
 
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Submit Files
+                @if($award->isOpen())
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Submit Files
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                You may submit as many files as necessary. You may also delete any files you no longer wish
+                                to be reviewed.
+                            </p>
+                            {!! Form::open(['action' => 'SubmissionController@store', 'files' => true]) !!}
+                            {!! Form::file('files[]', ['multiple' => 'multiple', 'accept' => 'application/pdf']) !!}
+                            {!! Form::hidden('award_id', $award->id) !!}
+                            <br/>
+                            {!! Form::submit('Submit', ['class' => 'btn btn-block btn-success']) !!}
+                            {!! Form::close() !!}
+                        </div>
                     </div>
-                    <div class="panel-body">
-                        <p>
-                            You may submit as many files as necessary. You may also delete any files you no longer wish
-                            to be reviewed.
-                        </p>
-                        {!! Form::open(['action' => 'SubmissionController@store', 'files' => true]) !!}
-                        {!! Form::file('files[]', ['multiple' => 'multiple', 'accept' => 'application/pdf']) !!}
-                        {!! Form::hidden('award_id', $award->id) !!}
-                        <br/>
-                        {!! Form::submit('Submit', ['class' => 'btn btn-block btn-success']) !!}
-                        {!! Form::close() !!}
+                @else
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">Submissions for this award are now closed.</div>
                     </div>
-                </div>
+                @endif
 
                 @if(!$submissions->isEmpty())
                     @cannot('viewAll', App\Submission::class)
@@ -74,12 +80,14 @@
                                                                 PDF</a>
                                                         </iframe>
                                                     </object>
+                                                    @if($award->isOpen())
                                                     {{ Form::open(['action' => ['SubmissionController@destroy', $submission->id], 'method' => 'DELETE']) }}
                                                     <button class="btn btn-danger btn-block" type="submit">
                                                         <span class="glyphicon glyphicon-remove"></span>
                                                         Delete
                                                     </button>
                                                     {{ Form::close() }}
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
