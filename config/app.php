@@ -177,6 +177,7 @@ return [
 	    Cviebrock\EloquentSluggable\ServiceProvider::class,
 	    'AdamWathan\BootForms\BootFormsServiceProvider',
 	    Collective\Html\HtmlServiceProvider::class,
+	    Laravel\Tinker\TinkerServiceProvider::class,
 
     ],
 
