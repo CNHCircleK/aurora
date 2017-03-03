@@ -16,6 +16,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 
 Route::group(['middleware' => 'auth'], function() {
+	Route::get('awards/getAllFiles', 'AwardController@getAllFiles');
 	Route::resource('awards', 'AwardController');
 	Route::resource('invites', 'InviteController');
 	Route::post('invites/confirm', 'InviteController@createConfirm');

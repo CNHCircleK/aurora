@@ -178,6 +178,7 @@ return [
 	    'AdamWathan\BootForms\BootFormsServiceProvider',
 	    Collective\Html\HtmlServiceProvider::class,
 	    Laravel\Tinker\TinkerServiceProvider::class,
+	    'Chumper\Zipper\ZipperServiceProvider'
 
     ],
 
@@ -230,6 +231,7 @@ return [
         'BootForm' => 'AdamWathan\BootForms\Facades\BootForm',
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Zipper' => 'Chumper\Zipper\Zipper'
 
     ],
 
