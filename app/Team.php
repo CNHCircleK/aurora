@@ -37,4 +37,16 @@ class Team extends Model
 	{
 		return $this->hasMany('App\Submission');
 	}
+
+	public function submissionsByAwards()
+	{
+		$this->load('submissions');
+
+		return $this->submissions->groupBy('award_id');
+	}
+
+	public function getAwardsSubmissionsAttribute()
+	{
+		return $this->submissionsByAwards();
+	}
 }
