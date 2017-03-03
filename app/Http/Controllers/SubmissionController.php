@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Award;
 use App\Mail\SubmissionConfirmation;
 use App\Submission;
 use Auth;
@@ -37,7 +38,7 @@ class SubmissionController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
 	public function store( Request $request ) {
 		$this->validate($request, [
@@ -47,6 +48,11 @@ class SubmissionController extends Controller
 		]);
 
 		$award_id = $request->input('award_id');
+
+		// Check if award is open
+		if (Award::find($award_id)->isClosed()) {
+			return redirect()->back()->withErrors(['award.closed' => 'This award is not open for submission!']);
+		}
 
 		foreach($request->file('files') as $file) {
 			$this->_processSubmission($award_id, $file);
@@ -118,11 +124,17 @@ class SubmissionController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function destroy($id)
     {
     	$object = Submission::find($id);
+
+	    // Check if award is open
+	    if ($object->award->isClosed()) {
+		    return redirect()->back()
+			    ->withErrors(['award.closed' => 'This submission is not able to be modified at this time!']);
+	    }
 
 	    $this->authorize('delete', $object);
 
